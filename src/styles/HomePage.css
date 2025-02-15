@@ -1,18 +1,88 @@
-/* HomePage specific styles */
-.home-container {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .home-container h1 {
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .home-container p {
-    color: #666;
-    font-size: 1rem;
-  }
-  
+/* Overall container styling */
+.home-wrapper {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Updated selector: use .navbar ul instead of .nav-bar ul */
+.navbar ul {
+  list-style: none;       /* removes default bullets */
+  margin: 0;
+  padding: 0;
+  display: flex;          /* displays items side by side */
+  gap: 20px;              /* spacing between links */
+}
+
+.navbar .nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #e91e63; /* A vibrant accent color */
+}
+
+/* Hero Section Styling */
+.hero {
+  position: relative;
+  background-image: url('https://source.unsplash.com/featured/?nails,salon');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.hero-overlay p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+/* Intro Section Styling */
+.intro {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.intro h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}

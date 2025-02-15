@@ -1,13 +1,66 @@
-/* General app styling */
-.App {
-  text-align: center;
-  padding: 20px;
-}
-
-/* Basic reset for margin and padding */
-body {
+/* Global Reset & Typography */
+body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Center navigation group */
+.center-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  list-style: none;  /* Remove bullets */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+/* Increased font size and padding for nav links */
+.navbar .nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.2rem;      /* Increased font size */
+  padding: 10px 15px;     /* Increased padding */
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #e91e63;
+}
+
+/* Book button styling */
+.book-container {
+  /* By default, it stays at the far right of the navbar */
+}
+
+.book-button {
+  border: 2px solid #e91e63;
+  padding: 10px 15px;     /* Increased padding for a larger button */
+  border-radius: 4px;
+  font-size: 1.2rem;      /* Increase font size for the Book button */
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.book-button:hover {
+  color: #e91e63;
+  background-color: #fce4ec;
 }
