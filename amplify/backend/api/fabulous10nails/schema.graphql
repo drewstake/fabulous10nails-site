@@ -1,0 +1,7 @@
+type CareerApplication @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  name: String!
+  email: String!
+  resumeUrl: String
+  appliedAt: AWSDateTime!
+}

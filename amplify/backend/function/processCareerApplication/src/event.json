@@ -1,5 +1,17 @@
 {
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3"
+  "Records": [
+    {
+      "eventID": "1",
+      "eventName": "INSERT",
+      "dynamodb": {
+        "NewImage": {
+          "id": { "S": "123" },
+          "name": { "S": "Test Applicant" },
+          "email": { "S": "test@example.com" },
+          "resumeUrl": { "S": "https://example.com/resume.pdf" },
+          "appliedAt": { "S": "2025-02-15T00:00:00Z" }
+        }
+      }
+    }
+  ]
 }

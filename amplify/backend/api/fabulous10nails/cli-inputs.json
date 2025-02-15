@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "fabulous10nails",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2025-02-22T04:47:56.267Z",
+      "keyDescription": "Default API key for Fabulous10Nails API"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}

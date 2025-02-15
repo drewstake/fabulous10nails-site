@@ -12,8 +12,20 @@
       "AmplifyAppId": "d2ndg182e9c92b"
     },
     "categories": {
+      "api": {
+        "fabulous10nails": {}
+      },
       "function": {
-        "processCareerApplication": {}
+        "processCareerApplication": {
+          "deploymentBucketName": "amplify-fabulous10nails-dev-8c2d4-deployment",
+          "s3Key": "amplify-builds/processCareerApplication-75743156326f61432b33-build.zip"
+        }
+      },
+      "auth": {
+        "fabulous10nails97219f5c": {}
+      },
+      "storage": {
+        "s3ffcbba60": {}
       }
     }
   }

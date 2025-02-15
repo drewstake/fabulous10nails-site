@@ -1,0 +1,13 @@
+{
+  "resourceName": "s3ffcbba60",
+  "policyUUID": "ffcbba60",
+  "bucketName": "fabulous10nails70e6e2e779134ec68b7856ab5c4db20a",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "processCareerApplication",
+  "groupAccess": {}
+}
