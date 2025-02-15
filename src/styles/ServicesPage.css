@@ -1,0 +1,57 @@
+/* Container styling */
+.services-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main heading style */
+  .services-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  /* Category container */
+  .service-category {
+    margin-bottom: 30px;
+  }
+  
+  /* Category heading */
+  .service-category h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 1.75rem;
+  }
+  
+  /* Unstyled list for services */
+  .service-category ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Individual service item */
+  .service-category li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  /* Service name and price styling */
+  .service-name {
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .service-price {
+    font-weight: 600;
+    color: #000;
+  }
+  
