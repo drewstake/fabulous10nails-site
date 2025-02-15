@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fabulous10nails-dev-8c2d4-authRole",
+      "UnauthRoleArn": "arn:aws:iam::370847409333:role/amplify-fabulous10nails-dev-8c2d4-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::370847409333:role/amplify-fabulous10nails-dev-8c2d4-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fabulous10nails-dev-8c2d4-deployment",
+      "UnauthRoleName": "amplify-fabulous10nails-dev-8c2d4-unauthRole",
+      "StackName": "amplify-fabulous10nails-dev-8c2d4",
+      "StackId": "arn:aws:cloudformation:us-east-1:370847409333:stack/amplify-fabulous10nails-dev-8c2d4/354b7270-eb51-11ef-92e6-0e34c62dc21d",
+      "AmplifyAppId": "d2ndg182e9c92b"
+    },
+    "categories": {
+      "function": {
+        "processCareerApplication": {}
+      }
+    }
+  }
+}

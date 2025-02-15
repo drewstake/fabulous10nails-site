@@ -1,0 +1,10 @@
+{
+  "api": {},
+  "function": {
+    "processCareerApplication": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  }
+}

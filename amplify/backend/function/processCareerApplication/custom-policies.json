@@ -1,0 +1,10 @@
+{
+  "Effect": "Allow",
+  "Action": [
+    "dynamodb:DescribeStream",
+    "dynamodb:GetRecords",
+    "dynamodb:GetShardIterator",
+    "dynamodb:ListStreams"
+  ],
+  "Resource": "arn:aws:dynamodb:us-east-1:370847409333:table/CareerApplication-dgphkfofhfa4pk3gsaptj5p2z4-dev/stream/*"
+}
