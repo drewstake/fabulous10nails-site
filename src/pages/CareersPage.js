@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Amplify } from "aws-amplify";
-import { Storage } from "@aws-amplify/storage";
-import { API } from "@aws-amplify/api";
+import { Amplify, Storage, API, graphqlOperation } from "aws-amplify";
 import awsExports from "../aws-exports";
 import { createCareerApplication } from "../graphql/mutations";
 import "../styles/CareersPage.css";
 
-// Configure Amplify
 Amplify.configure(awsExports);
 
 const CareersPage = () => {
@@ -15,50 +12,48 @@ const CareersPage = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // Handle File Selection
   const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
+    const selectedFile = e.target.files?.[0];
+    console.log("Selected file:", selectedFile);
+    setFile(selectedFile);
   };
 
-  // Handle Resume Upload
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!file || !name || !email) {
       setMessage("Please fill out all fields and select a PDF file.");
       return;
     }
 
     try {
-      // Generate a unique filename
       const fileName = `resumes/${Date.now()}_${file.name}`;
 
-      // Upload file to S3
-      const uploadResult = await Storage.put(fileName, file, {
+      // Convert the file to an ArrayBuffer, then wrap it in a Uint8Array
+      const arrayBuffer = await file.arrayBuffer();
+      const uint8Data = new Uint8Array(arrayBuffer);
+      console.log("Uint8Array data:", uint8Data, "byteLength:", uint8Data.byteLength);
+
+      // Wrap the Uint8Array in a Blob so that the data object has a 'size' property.
+      const blobData = new Blob([uint8Data], { type: file.type });
+      console.log("Blob data:", blobData, "size:", blobData.size);
+
+      // Pass the Blob to Storage.put instead of the original file or raw Uint8Array.
+      await Storage.put(fileName, blobData, {
         contentType: file.type,
       });
 
-      console.log("File uploaded to S3:", uploadResult);
+      const resumeUrl = `https://${process.env.REACT_APP_S3_BUCKET}.s3.amazonaws.com/public/${fileName}`;
 
-      // Construct the S3 file URL using Amplify Storage
-      const resumeUrl = await Storage.get(fileName, { level: "public" });
-
-      console.log("Resume URL:", resumeUrl);
-
-      // Save applicant details in DynamoDB via GraphQL
-      await API.graphql({
-        query: createCareerApplication,
-        variables: {
+      await API.graphql(
+        graphqlOperation(createCareerApplication, {
           input: {
             name,
             email,
             resumeUrl,
             appliedAt: new Date().toISOString(),
           },
-        },
-      });
+        })
+      );
 
       setMessage("Your resume has been uploaded and submitted successfully!");
       setFile(null);
@@ -75,7 +70,6 @@ const CareersPage = () => {
       <h1>Careers</h1>
       <p>We are always looking for talented individuals to join our team.</p>
       <p>To apply, please upload your resume (PDF) and fill in the form below.</p>
-
       <form onSubmit={handleSubmit} className="resume-form">
         <input
           type="text"
@@ -104,15 +98,12 @@ const CareersPage = () => {
           Submit Resume
         </button>
       </form>
-
       {message && <p className="message">{message}</p>}
-
       <p>
         Alternatively, you can send your resume directly to&nbsp;
         <a href="mailto:drewstake3@gmail.com" className="email-link">
           drewstake3@gmail.com
-        </a>
-        .
+        </a>.
       </p>
     </div>
   );
