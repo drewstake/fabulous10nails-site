@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Amplify, Storage, API, graphqlOperation } from "aws-amplify";
+import { Amplify } from "aws-amplify";
+// Use GraphQLAPI instead of API
+import { GraphQLAPI, graphqlOperation } from "@aws-amplify/api-graphql";
+import { uploadData, getUrl } from "@aws-amplify/storage";
 import awsExports from "../aws-exports";
 import { createCareerApplication } from "../graphql/mutations";
 import "../styles/CareersPage.css";
@@ -12,9 +15,14 @@ const CareersPage = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  console.log("S3 Bucket:", process.env.REACT_APP_S3_BUCKET);
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
     console.log("Selected file:", selectedFile);
+    if (selectedFile) {
+      console.log("File size:", selectedFile.size);
+    }
     setFile(selectedFile);
   };
 
@@ -24,27 +32,23 @@ const CareersPage = () => {
       setMessage("Please fill out all fields and select a PDF file.");
       return;
     }
-
     try {
       const fileName = `resumes/${Date.now()}_${file.name}`;
+      console.log("Uploading file as:", fileName);
 
-      // Convert the file to an ArrayBuffer, then wrap it in a Uint8Array
-      const arrayBuffer = await file.arrayBuffer();
-      const uint8Data = new Uint8Array(arrayBuffer);
-      console.log("Uint8Array data:", uint8Data, "byteLength:", uint8Data.byteLength);
+      // Wrap the file in a Blob (optional, as file is already a Blob in many cases)
+      const blobData = new Blob([file], { type: file.type });
+      console.log("Blob size:", blobData.size);
 
-      // Wrap the Uint8Array in a Blob so that the data object has a 'size' property.
-      const blobData = new Blob([uint8Data], { type: file.type });
-      console.log("Blob data:", blobData, "size:", blobData.size);
+      // Upload the file to S3 using the modular Storage function uploadData
+      await uploadData(fileName, blobData, { contentType: file.type });
 
-      // Pass the Blob to Storage.put instead of the original file or raw Uint8Array.
-      await Storage.put(fileName, blobData, {
-        contentType: file.type,
-      });
+      // Retrieve the file URL using the modular function getUrl
+      const resumeUrl = await getUrl(fileName, { level: "protected" });
+      console.log("Resume URL:", resumeUrl);
 
-      const resumeUrl = `https://${process.env.REACT_APP_S3_BUCKET}.s3.amazonaws.com/public/${fileName}`;
-
-      await API.graphql(
+      // Save application details via GraphQL using GraphQLAPI and graphqlOperation
+      await GraphQLAPI.graphql(
         graphqlOperation(createCareerApplication, {
           input: {
             name,
@@ -100,7 +104,7 @@ const CareersPage = () => {
       </form>
       {message && <p className="message">{message}</p>}
       <p>
-        Alternatively, you can send your resume directly to&nbsp;
+        Alternatively, you can send your resume directly to{" "}
         <a href="mailto:drewstake3@gmail.com" className="email-link">
           drewstake3@gmail.com
         </a>.
