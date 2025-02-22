@@ -13,12 +13,17 @@
     },
     "categories": {
       "api": {
-        "fabulous10nails": {}
+        "fabulous10nails": {},
+        "AdminQueries": {}
       },
       "function": {
         "processCareerApplication": {
           "deploymentBucketName": "amplify-fabulous10nails-dev-8c2d4-deployment",
           "s3Key": "amplify-builds/processCareerApplication-75743156326f61432b33-build.zip"
+        },
+        "AdminQueries67896c1d": {
+          "deploymentBucketName": "amplify-fabulous10nails-dev-8c2d4-deployment",
+          "s3Key": "amplify-builds/AdminQueries67896c1d-41634e784f3658524737-build.zip"
         }
       },
       "auth": {

@@ -1,5 +1,27 @@
 {
   "api": {
+    "AdminQueries": {
+      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "fabulous10nails97219f5c"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "AdminQueries67896c1d"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "fabulous10nails": {
       "dependsOn": [],
       "output": {
@@ -35,7 +57,9 @@
         "signupAttributes": [
           "EMAIL"
         ],
-        "socialProviders": [],
+        "socialProviders": [
+          "GOOGLE"
+        ],
         "usernameAttributes": [
           "EMAIL"
         ],
@@ -48,6 +72,20 @@
     }
   },
   "function": {
+    "AdminQueries67896c1d": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "fabulous10nails97219f5c"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "processCareerApplication": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -55,6 +93,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_AdminQueries67896c1d_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AdminQueries67896c1d"
+        }
+      ]
+    },
+    "AMPLIFY_function_AdminQueries67896c1d_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AdminQueries67896c1d"
+        }
+      ]
+    },
     "AMPLIFY_function_processCareerApplication_deploymentBucketName": {
       "usedBy": [
         {

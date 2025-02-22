@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import CareersPage from './pages/CareersPage';
+import Dashboard from './pages/Dashboard'; // Make sure this component is created and wrapped with withAuthenticator
 import './styles/App.css';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
               </li>
               <li>
                 <Link to="/careers" className="nav-link">Careers</Link>
+              </li>
+              <li>
+                <Link to="/dashboard" className="nav-link">Dashboard</Link>
               </li>
             </ul>
           </div>
@@ -41,6 +45,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/careers" element={<CareersPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
